@@ -34,6 +34,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import MyAttendance from "./pages/MyAttendance";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Dashboard2 from "./pages/Dashboard2";
 
 function App() {
   return (
@@ -43,7 +44,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
+        <Route path="/dashboard2" element={<Dashboard2 />} />
         {/* Protected */}
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/my-attendance" element={<ProtectedRoute><MyAttendance /></ProtectedRoute>} />
