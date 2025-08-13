@@ -49,24 +49,46 @@ connectDB();
 
 const app = express();
 
-// ✅ CORS Configuration
+// // ✅ CORS Configuration
+// const allowedOrigins = [
+//   "", // frontend production
+//   "http://localhost:3000" // local dev
+// ];
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true
+// }));
+
+const cors = require("cors");
+
 const allowedOrigins = [
-  "https://face-attendance-system-info.vercel.app", // frontend production
-  "http://localhost:3000" // local dev
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  /\.vercel\.app$/   // ✅ allow all Vercel preview deployments
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // allow mobile apps / curl
+    if (allowedOrigins.some(o =>
+      typeof o === "string" ? o === origin : o.test(origin)
+    )) {
+      return callback(null, true);
     }
+    callback(new Error("Not allowed by CORS"));
   },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
+
 
 app.use(express.json());
 
