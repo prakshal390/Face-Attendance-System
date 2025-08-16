@@ -1,111 +1,5 @@
 
 
-// import React, { useState } from "react";
-// import axios from "axios";
-// import { useNavigate, Link } from "react-router-dom";
-// import "./Login.css"; // External CSS
-
-// const Login = () => {
-//   const navigate = useNavigate();
-//   const [user, setUser] = useState({ email: "", password: "" });
-//   const [error, setError] = useState("");
-
-//   const validateForm = () => {
-//     // Check for empty fields
-//     if (!user.email.trim() || !user.password.trim()) {
-//       return "All fields are required.";
-//     }
-
-//     // Email format validation
-//     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//     if (!emailRegex.test(user.email)) {
-//       return "Please enter a valid email address.";
-//     }
-
-//     // Password length
-//     if (user.password.length < 6) {
-//       return "Password must be at least 6 characters long.";
-//     }
-
-//     // Prevent leading/trailing spaces in password
-//     if (user.password !== user.password.trim()) {
-//       return "Password cannot start or end with spaces.";
-//     }
-
-//     return "";
-//   };
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-//     setError("");
-
-//     const validationError = validateForm();
-//     if (validationError) {
-//       setError(validationError);
-//       return;
-//     }
-
-//     try {
-//       const res = await axios.post(
-//         `${process.env.REACT_APP_API_URL}/users/login`,
-//         user
-//       );
-
-//       if (res.data.token) {
-//         localStorage.setItem("token", res.data.token);
-//       }
-
-//       alert("Login Success ✅");
-//       navigate("/dashboard2");
-//     } catch (err) {
-//       console.error(err);
-//       setError("Login failed! Please check your credentials.");
-//     }
-//   };
-
-//   return (
-//     <div className="login-container">
-//       <form onSubmit={handleLogin} className="login-form">
-//         <h2 className="login-heading">Login</h2>
-
-//         {error && <p className="error-msg">{error}</p>}
-
-//         <input
-//           type="email"
-//           placeholder="Email"
-//           value={user.email}
-//           onChange={(e) => setUser({ ...user, email: e.target.value })}
-//           className="login-input"
-//         />
-
-//         <input
-//           type="password"
-//           placeholder="Password"
-//           value={user.password}
-//           onChange={(e) => setUser({ ...user, password: e.target.value })}
-//           className="login-input"
-//         />
-
-//         <button type="submit" className="login-btn">
-//          Login
-//         </button>
-
-//         <p className="login-link-text">
-//           Don't have an account?{" "}
-//           <Link to="/register" className="login-link">
-//             Create one
-//           </Link>
-//         </p>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
-
-
-
 
 
 import React, { useState } from "react";
@@ -126,8 +20,8 @@ const Login = () => {
     if (!emailRegex.test(user.email)) {
       return "Please enter a valid email address.";
     }
-    if (user.password.length < 6) {
-      return "Password must be at least 6 characters long.";
+    if (user.password.length < 5) {
+      return "Password must be at least 5 characters long.";
     }
     if (user.password !== user.password.trim()) {
       return "Password cannot start or end with spaces.";

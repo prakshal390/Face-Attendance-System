@@ -156,7 +156,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, {
         name: user.name.trim(),
         email: user.email.trim(),
         password: user.password,
